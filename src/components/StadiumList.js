@@ -8,7 +8,9 @@ function StadiumList() {
   const [stadiums, setStadiums] = React.useState([]);
 
   React.useEffect(() => {
-    axios.get(baseURL).then((response) => setStadiums(response.data.stadiums));
+    axios.get(baseURL).then((response) => {
+      setStadiums(response.data.stadiums);
+    });
   }, []);
 
   return (
