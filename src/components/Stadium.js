@@ -1,7 +1,16 @@
 import React from "react";
-// import Mets from "../../public/images/mets.svg";
+import axios from "axios";
 
 function Stadium({ stadium }) {
+  const [stadiumDetail, setStadiumDetail] = React.useState({});
+  const getStadiumDetails = () => {
+    axios
+      .get(`http://localhost:3001/api/v1/stadiums/${stadium.id}`)
+      .then((response) => {
+        setStadiumDetail(response.data.stadium);
+      });
+  };
+
   // to get the images of team logo
   const teamNameSplit = stadium.team.split(" ");
   const teamNameAbbrev =
@@ -10,12 +19,16 @@ function Stadium({ stadium }) {
       : teamNameSplit[teamNameSplit.length - 1];
 
   return (
-    <img
-      src={process.env.PUBLIC_URL + `/images/${teamNameAbbrev}.svg`}
-      alt="Stadium"
-      width="500"
-      height="500"
-    />
+    <>
+      <img
+        onClick={getStadiumDetails}
+        src={process.env.PUBLIC_URL + `/images/${teamNameAbbrev}.svg`}
+        alt="Stadium"
+        width="500"
+        height="500"
+      />
+      {stadiumDetail && <p>{stadiumDetail?.name}</p>}
+    </>
   );
 }
 

@@ -1,5 +1,5 @@
-import axios from "axios";
 import React from "react";
+import axios from "axios";
 import Stadium from "./Stadium";
 
 const baseURL = "http://localhost:3001/api/v1/stadiums";
