@@ -1,12 +1,16 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import StadiumList from "./components/StadiumList";
+import StadiumDetail from "./components/StadiumDetail";
 
 function App() {
   return (
-    <>
-      <h1>App</h1>
-      <StadiumList />
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<StadiumList />} />
+        <Route path="/stadiums/:stadiumName" element={<StadiumDetail />} />
+      </Routes>
+    </Router>
   );
 }
 

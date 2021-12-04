@@ -1,14 +1,12 @@
 import React from "react";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Stadium({ stadium }) {
-  const [stadiumDetail, setStadiumDetail] = React.useState({});
+  let navigate = useNavigate();
+  // const [stadiumDetail, setStadiumDetail] = React.useState({});
   const getStadiumDetails = () => {
-    axios
-      .get(`http://localhost:3001/api/v1/stadiums/${stadium.id}`)
-      .then((response) => {
-        setStadiumDetail(response.data.stadium);
-      });
+    console.log("here");
+    navigate(`/stadiums/${stadium.name}`, { state: stadium });
   };
 
   // to get the images of team logo
@@ -27,7 +25,6 @@ function Stadium({ stadium }) {
         width="500"
         height="500"
       />
-      {stadiumDetail && <p>{stadiumDetail?.name}</p>}
     </>
   );
 }
