@@ -1,15 +1,20 @@
 import React from "react";
 import axios from "axios";
 import Stadium from "./Stadium";
+// import { useLocalStorage } from "../useLocalStorage";
 
 const baseURL = "http://localhost:3001/api/v1/stadiums";
 
 function StadiumList() {
-  const [stadiums, setStadiums] = React.useState([]);
+  const [stadiums, setStadiums] = React.useState(() => {
+    return JSON.parse(localStorage.getItem("stadiums")) || [];
+  });
 
   React.useEffect(() => {
     axios.get(baseURL).then((response) => {
-      setStadiums(response.data.stadiums);
+      console.log("here");
+      localStorage.setItem("stadiums", JSON.stringify(response.data.stadiums));
+      // setStadiums(JSON.stringify(response.data.stadiums));
     });
   }, []);
 

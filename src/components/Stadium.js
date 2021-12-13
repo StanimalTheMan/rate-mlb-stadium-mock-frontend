@@ -5,7 +5,6 @@ function Stadium({ stadium }) {
   let navigate = useNavigate();
   // const [stadiumDetail, setStadiumDetail] = React.useState({});
   const getStadiumDetails = () => {
-    console.log("here");
     navigate(`/stadiums/${stadium.name}`, { state: stadium });
   };
 
